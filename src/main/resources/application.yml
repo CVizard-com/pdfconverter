@@ -1,0 +1,19 @@
+settings:
+  gpt-api-key: ""
+  kafka:
+    topics:
+      cleaned-text: "cleaned-text"
+  model: "gpt-3.5-turbo"
+server:
+  port: 8083
+spring:
+  kafka:
+    bootstrap-servers: "localhost:29092"
+  data:
+    mongodb:
+      host: 'localhost'
+      port: 27017
+      username: "root"
+      password: "example"
+      database: "cvizard"
+      authentication-database: "admin"
