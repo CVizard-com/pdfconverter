@@ -1,17 +1,29 @@
 settings:
-  gpt-api-key: ""
+  gpt-api-key:
+  gpt-endpoint: "https://api.openai.com/v1"
   kafka:
     topics:
-      cleaned-text: "cleaned-text"
-  model: "gpt-3.5-turbo"
+      cleaned-text:
+  model:
 server:
-  port: 8083
+  port:
 spring:
   kafka:
     bootstrap-servers: "localhost:29092"
+  cloud:
+    function:
+      definition: myConsumer
+    stream:
+      kafka:
+        binder:
+          brokers: localhost:29092
+      bindings:
+        myConsumer-in-0:
+          destination: cleaned_text
+          group: group1
   data:
     mongodb:
-      host: 'localhost'
+      host: "localhost"
       port: 27017
       username: "root"
       password: "example"

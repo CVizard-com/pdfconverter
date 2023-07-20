@@ -1,4 +1,4 @@
-package com.cvizard.pdfconverter.models;
+package com.cvizard.pdfconverter.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,19 +13,12 @@ import java.util.List;
 public class Resume {
     @Id
     private String id;
-//    @JsonProperty(value = "Work")
     private List<Work> work;
-//    @JsonProperty(value = "Education")
     private List<Education> education;
-//    @JsonProperty(value = "Certificate")
     private List<Certificate> certificates;
-//    @JsonProperty(value = "Skill")
     private List<Skill> skills;
-//    @JsonProperty(value = "Language")
     private List<Language> languages;
-//    @JsonProperty(value = "Project")
     private List<Project> projects;
-//    @JsonProperty(value = "Interest")
     private List<Interest> interests;
     
     @NoArgsConstructor

@@ -1,4 +1,4 @@
-package com.cvizard.pdfconverter;
+package com.cvizard.pdfconverter.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,6 +17,6 @@ public class ChatGPTResponse {
     @Data
     public static class Choice {
         private int index;
-        private Message message;
+        private ChatGPTMessage message;
     }
 }

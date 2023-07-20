@@ -1,6 +1,6 @@
-package com.cvizard.pdfconverter.repositories;
+package com.cvizard.pdfconverter.repository;
 
-import com.cvizard.pdfconverter.models.Resume;
+import com.cvizard.pdfconverter.model.Resume;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
