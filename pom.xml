@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.cvizard</groupId>
-    <artifactId>converter</artifactId>
+    <artifactId>pdfconverter</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>converter</name>
-    <description>converter</description>
+    <name>pdfconverter</name>
+    <description>pdfconverter</description>
     <properties>
         <java.version>17</java.version>
         <spring-cloud.version>2022.0.3</spring-cloud.version>
@@ -98,7 +98,7 @@
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>converter</finalName>
+        <finalName>pdfconverter</finalName>
     </build>
 
 </project>
