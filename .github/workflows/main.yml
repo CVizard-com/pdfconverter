@@ -71,7 +71,7 @@ jobs:
           
       - name: Update Docker Compose file
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} "sed -i 's|cvizard.com:5001/pdfconverter:.*|cvizard.com:5001/pdfconverter:${{ github.sha }}|' /CVizard/docker-compose.yml"
+          ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} "sed -i 's|cvizard.com:5001/pdfconverter:.*|cvizard.com:5001/pdfconverter:${{ github.sha }}|' CVizard/docker-compose.yml"
 
       - name: Start services
         run: |
