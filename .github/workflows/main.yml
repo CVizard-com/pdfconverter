@@ -79,7 +79,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             sed -i 's|cvizard.com:5001/pdfconverter:.*|cvizard.com:5001/pdfconverter:${{ github.sha }}|' CVizard/docker-compose.yml
-            cd /CVizard && docker compose down && docker compose build && docker compose up -d
+            cd CVizard && docker compose down && docker compose build && docker compose up -d
 
           
 #       - name: Update Docker Compose file
