@@ -25,7 +25,7 @@ jobs:
       
   docker_build_and_push:
        runs-on: ubuntu-latest
-
+       needs: ["Java_CI_with_Maven"]
        steps:
        - name: Checkout code
          uses: actions/checkout@v3
