@@ -34,4 +34,4 @@
          with:
            context: .
            push: true
-           tags: https://cvizard.com:5001/pdfconverter:${{ github.sha }}
+           tags: cvizard.com:5001/pdfconverter:${{ github.sha }}
