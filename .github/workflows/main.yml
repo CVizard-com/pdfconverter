@@ -61,6 +61,14 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -t ed25519 ${{ secrets.HOST }} >> ~/.ssh/known_hosts
+
+          
       - name: Update Docker Compose file
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} "sed -i 's|cvizard.com:5001/pdfconverter:.*|cvizard.com:5001/pdfconverter:${{ github.sha }}|' /CVizard/docker-compose.yml"
