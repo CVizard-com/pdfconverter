@@ -77,7 +77,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          run: |
+          script: |
             sed -i 's|cvizard.com:5001/pdfconverter:.*|cvizard.com:5001/pdfconverter:${{ github.sha }}|' CVizard/docker-compose.yml
             cd /CVizard && docker compose down && docker compose build && docker compose up -d
 
