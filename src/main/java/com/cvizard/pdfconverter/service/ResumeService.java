@@ -19,6 +19,7 @@ import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Service;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.function.Consumer;
 
@@ -38,9 +39,8 @@ public class ResumeService {
     public Consumer<Message<String>> myConsumer(){
         return message -> {
             String payload = message.getPayload();
-            MessageHeaders headers = message.getHeaders().get(KafkaHeaders.RECEIVED_KEY, MessageHeaders.class);
-            System.out.println(headers);
-            String key = headers.get(KafkaHeaders.RECEIVED_KEY, MessageHeaders.class).toString();
+            byte[] keyBytes = message.getHeaders().get(KafkaHeaders.RECEIVED_KEY, byte[].class);
+            String key = new String(keyBytes, StandardCharsets.UTF_8);
             System.out.println("payload = " + payload + " key = " + key);
             try {
                 resumeConverter(payload, key);
