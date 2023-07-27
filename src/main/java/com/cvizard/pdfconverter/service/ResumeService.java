@@ -16,8 +16,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageHeaders;
+import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
 import java.util.function.Consumer;
 
 @Service
@@ -36,11 +38,12 @@ public class ResumeService {
     public Consumer<Message<String>> myConsumer(){
         return message -> {
             String payload = message.getPayload();
-            MessageHeaders headers = message.getHeaders();
-            Object key = headers.get(KafkaHeaders.RECEIVED_KEY);
+            MessageHeaders headers = message.getHeaders().get(KafkaHeaders.RECEIVED_KEY, MessageHeaders.class);
+            System.out.println(headers);
+            String key = headers.get(KafkaHeaders.RECEIVED_KEY, MessageHeaders.class).toString();
             System.out.println("payload = " + payload + " key = " + key);
             try {
-                resumeConverter(payload, key.toString());
+                resumeConverter(payload, key);
             } catch (JsonProcessingException e) {
                 throw new RuntimeException(e);
             }
