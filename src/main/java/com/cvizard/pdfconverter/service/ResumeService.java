@@ -61,6 +61,7 @@ public class ResumeService {
                 .getContent());
         resume.setId(key);
          resumeRepository.insert(resume);
+         System.out.println("saved "+ key);
      }
 
      public Resume resumeParser(String resumeText) throws JsonProcessingException {
