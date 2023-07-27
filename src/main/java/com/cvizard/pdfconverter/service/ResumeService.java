@@ -52,7 +52,6 @@ public class ResumeService {
                 .replace("[RESUME TEXT]",resumeText);
         ChatGPTRequest request = new ChatGPTRequest(model,prompt);
         ChatGPTResponse response = chatGPTClient.generateChatGPTResponse("Bearer "+apiKey,request);
-
         Resume resume = resumeParser(response
                 .getChoices()
                 .stream()
@@ -61,7 +60,7 @@ public class ResumeService {
                 .getMessage()
                 .getContent());
         resume.setId(key);
-        resumeRepository.save(resume);
+         resumeRepository.insert(resume);
      }
 
      public Resume resumeParser(String resumeText) throws JsonProcessingException {

@@ -1,4 +1,4 @@
-you have here plain text from cv: “”,
+you have here plain text from cv: [RESUME TEXT],
 analyse this and return me only this JSON template:
 {
 "work": {
@@ -19,27 +19,27 @@ analyse this and return me only this JSON template:
 "endDate": ""
 ]
 },
-"certificate": {
+"certificates": {
 [
 "name": "",
 "date": "",
 "issuer": ""
 ]
 },
-"skill": {
+"skills": {
 [
 "name": "",
 "level": "",
 "keywords": []
 ]
 },
-"language": {
+"languages": {
 [
 "language": "",
 "level": ""
 ]
 },
-"project": {
+"projects": {
 [
 "name": "",
 "startDate": "",
@@ -47,7 +47,7 @@ analyse this and return me only this JSON template:
 "summary": ""
 ]
 },
-"interest": {
+"interests": {
 [
 "name": "",
 "keywords": []

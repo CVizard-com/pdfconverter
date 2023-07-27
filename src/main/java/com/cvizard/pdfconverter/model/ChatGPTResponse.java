@@ -13,10 +13,22 @@ import java.util.List;
 @NoArgsConstructor
 public class ChatGPTResponse {
     private List<Choice> choices;
+    private String id;
+    private String object;
+    private Usage usage;
+    private String model;
+    private String created;
 
     @Data
     public static class Choice {
         private int index;
         private ChatGPTMessage message;
+        private String finish_reason;
+    }
+    @Data
+    public static class Usage{
+        private String completion_tokens;
+        private String prompt_tokens;
+        private String total_tokens;
     }
 }

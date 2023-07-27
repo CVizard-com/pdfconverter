@@ -7,6 +7,6 @@ RUN mvn wrapper:wrapper
 
 FROM amazoncorretto:17
 WORKDIR /app
-COPY --from=build /app/target/converter.jar .
+COPY --from=build /app/target/pdfconverter.jar .
 EXPOSE 8083
-CMD ["java", "-jar", "converter.jar"]
+CMD ["java", "-jar", "pdfconverter.jar"]
