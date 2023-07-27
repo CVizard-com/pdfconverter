@@ -9,4 +9,8 @@ FROM amazoncorretto:17
 WORKDIR /app
 COPY --from=build /app/target/pdfconverter.jar .
 EXPOSE 8083
+<<<<<<< HEAD
 CMD ["java", "-jar", "pdfconverter.jar"]
+=======
+CMD ["java", "-jar", "pdfconverter.jar"]
+>>>>>>> 9f4a598706eeceac01c093e455f4f6384e9a4591
