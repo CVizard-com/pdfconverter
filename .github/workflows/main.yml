@@ -48,6 +48,7 @@ jobs:
            tags: cvizard.com:5001/pdfconverter:${{ github.sha }}
            
   deploy:
+      if: github.event.pull_request.merged == 'true'
       runs-on: ubuntu-latest
       needs: ["docker_build_and_push"]
       steps:
