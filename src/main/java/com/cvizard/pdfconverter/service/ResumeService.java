@@ -50,7 +50,7 @@ public class ResumeService {
     }
 
     public void resumeConverter(String resumeText, String key) throws JsonProcessingException {
-        resumeRepository.insert(Resume.builder().id(key).status(PROCESSING).build());
+        resumeRepository.save(Resume.builder().id(key).status(PROCESSING).build());
         String prompt = context.getBean("promptFromResource", String.class)
                 .replace("[RESUME TEXT]", resumeText);
         ChatGPTRequest request = new ChatGPTRequest(model, prompt);
@@ -63,7 +63,7 @@ public class ResumeService {
                 .getMessage()
                 .getContent());
         resume.setId(key);
-        resumeRepository.insert(resume);
+        resumeRepository.save(resume);
         System.out.println("saved " + key);
     }
 
