@@ -3,9 +3,11 @@ name: CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches-ignore:
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   java_ci_with_maven:
@@ -53,15 +55,6 @@ jobs:
       steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-     
-          
-#       - name: Set up SSH
-#         run: |
-#           mkdir -p ~/.ssh
-#           echo "${{ secrets.SSH_KEY }}" > ~/.ssh/cvizard_ed25519
-#           chmod 600 ~/.ssh/cvizard_ed25519
-#           ssh-keyscan -t ed25519 ${{ secrets.HOST }} >> ~/.ssh/known_hosts
         
       - name: install ssh
         run: sudo apt-get install -y ssh
@@ -83,15 +76,3 @@ jobs:
             docker login cvizard.com:5001 -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
             sed -i 's|cvizard.com:5001/pdfconverter:.*|cvizard.com:5001/pdfconverter:${{ github.sha }}|' CVizard/docker-compose.yml
             cd CVizard && docker compose stop pdfconverter && docker compose build pdfconverter && docker compose up -d pdfconverter
-
-          
-#       - name: Update Docker Compose file
-#         run: |
-#           ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} "sed -i 's|cvizard.com:5001/pdfconverter:.*|cvizard.com:5001/pdfconverter:${{ github.sha }}|' CVizard/docker-compose.yml"
-
-#       - name: Start services
-#         run: |
-#           ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} "cd /CVizard && docker compose down && docker compose build && docker compose up -d"
-
-          
-    
