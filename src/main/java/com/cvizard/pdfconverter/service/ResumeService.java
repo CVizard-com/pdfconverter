@@ -21,6 +21,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.function.Consumer;
 
 import static com.cvizard.pdfconverter.model.ResumeStatus.PROCESSING;
+import static com.cvizard.pdfconverter.model.ResumeStatus.READY;
 
 @Service
 @RequiredArgsConstructor
@@ -63,6 +64,7 @@ public class ResumeService {
                 .getMessage()
                 .getContent());
         resume.setId(key);
+        resume.setStatus(READY);
         resumeRepository.save(resume);
         System.out.println("saved " + key);
     }
