@@ -15,13 +15,12 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.Message;
-import org.springframework.messaging.MessageHeaders;
-import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 import java.util.function.Consumer;
+
+import static com.cvizard.pdfconverter.model.ResumeStatus.PROCESSING;
 
 @Service
 @RequiredArgsConstructor
@@ -36,7 +35,7 @@ public class ResumeService {
     private String model;
 
     @Bean
-    public Consumer<Message<String>> myConsumer(){
+    public Consumer<Message<String>> myConsumer() {
         return message -> {
             String payload = message.getPayload();
             byte[] keyBytes = message.getHeaders().get(KafkaHeaders.RECEIVED_KEY, byte[].class);
@@ -50,11 +49,12 @@ public class ResumeService {
         };
     }
 
-     public void resumeConverter(String resumeText, String key) throws JsonProcessingException {
+    public void resumeConverter(String resumeText, String key) throws JsonProcessingException {
+        resumeRepository.insert(Resume.builder().id(key).status(PROCESSING).build());
         String prompt = context.getBean("promptFromResource", String.class)
-                .replace("[RESUME TEXT]",resumeText);
-        ChatGPTRequest request = new ChatGPTRequest(model,prompt);
-        ChatGPTResponse response = chatGPTClient.generateChatGPTResponse("Bearer "+apiKey,request);
+                .replace("[RESUME TEXT]", resumeText);
+        ChatGPTRequest request = new ChatGPTRequest(model, prompt);
+        ChatGPTResponse response = chatGPTClient.generateChatGPTResponse("Bearer " + apiKey, request);
         Resume resume = resumeParser(response
                 .getChoices()
                 .stream()
@@ -63,11 +63,11 @@ public class ResumeService {
                 .getMessage()
                 .getContent());
         resume.setId(key);
-         resumeRepository.insert(resume);
-         System.out.println("saved "+ key);
-     }
+        resumeRepository.insert(resume);
+        System.out.println("saved " + key);
+    }
 
-     public Resume resumeParser(String resumeText) throws JsonProcessingException {
-         return context.getBean(ObjectMapper.class).readValue(resumeText, Resume.class);
-     }
+    public Resume resumeParser(String resumeText) throws JsonProcessingException {
+        return context.getBean(ObjectMapper.class).readValue(resumeText, Resume.class);
+    }
 }

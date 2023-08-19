@@ -1,5 +1,7 @@
 package com.cvizard.pdfconverter.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -11,9 +13,12 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Document("cvizard")
+@Builder
+@AllArgsConstructor
 public class Resume {
     @MongoId
     private String id;
+    private ResumeStatus status;
     private List<Work> work;
     private List<Education> education;
     private List<Certificate> certificates;
