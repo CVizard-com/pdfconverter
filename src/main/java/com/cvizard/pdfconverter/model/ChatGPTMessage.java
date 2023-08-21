@@ -19,6 +19,6 @@ public class ChatGPTMessage {
     public ChatGPTMessage(String role, String content) {
         this.role = role;
         this.content = content;
-        this.function_call = null;
+        this.function_call = new FunctionCall();
     }
 }
