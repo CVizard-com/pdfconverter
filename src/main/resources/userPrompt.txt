@@ -1,0 +1,1 @@
+Extract data from my resume into json format. Resume text: [RESUME_TEXT]

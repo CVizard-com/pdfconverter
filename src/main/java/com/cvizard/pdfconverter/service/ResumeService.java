@@ -2,6 +2,7 @@ package com.cvizard.pdfconverter.service;
 
 import com.cvizard.pdfconverter.client.ChatGPTClient;
 import com.cvizard.pdfconverter.config.AppConfig;
+import com.cvizard.pdfconverter.config.ResourceReader;
 import com.cvizard.pdfconverter.model.ChatGPTRequest;
 import com.cvizard.pdfconverter.model.ChatGPTResponse;
 import com.cvizard.pdfconverter.model.Resume;
@@ -52,9 +53,19 @@ public class ResumeService {
 
     public void resumeConverter(String resumeText, String key) throws JsonProcessingException {
         resumeRepository.save(Resume.builder().id(key).status(PROCESSING).build());
-        String prompt = context.getBean("promptFromResource", String.class)
-                .replace("[RESUME TEXT]", resumeText);
-        ChatGPTRequest request = new ChatGPTRequest(model, prompt);
+//        String userPrompt = context.getBean( "promptFromResource","userPrompt.txt").toString();
+//        String systemPrompt = context.getBean( "promptFromResource","systemPrompt.txt").toString();
+//        String function = context.getBean("promptFromResource",  "function.txt").toString();
+//        String functionCall = context.getBean( "promptFromResource","functionCall.txt").toString();
+
+        String userPrompt = ResourceReader.readFileToString("classpath:userPrompt.txt").replace("[RESUME_TEXT]", resumeText);
+        String systemPrompt = ResourceReader.readFileToString("classpath:systemPrompt.txt");
+        String function = ResourceReader.readFileToString("classpath:function.txt");
+        String functionCall = ResourceReader.readFileToString("classpath:functionCall.txt");
+
+
+
+        ChatGPTRequest request = new ChatGPTRequest(model, userPrompt, systemPrompt, function, functionCall);
         ChatGPTResponse response = chatGPTClient.generateChatGPTResponse("Bearer " + apiKey, request);
         Resume resume = resumeParser(response
                 .getChoices()
@@ -62,7 +73,9 @@ public class ResumeService {
                 .findFirst()
                 .orElseThrow()
                 .getMessage()
-                .getContent());
+                .getFunction_call()
+                .getArguments()
+        );
         resume.setId(key);
         resume.setStatus(READY);
         resumeRepository.save(resume);
@@ -72,4 +85,5 @@ public class ResumeService {
     public Resume resumeParser(String resumeText) throws JsonProcessingException {
         return context.getBean(ObjectMapper.class).readValue(resumeText, Resume.class);
     }
+
 }

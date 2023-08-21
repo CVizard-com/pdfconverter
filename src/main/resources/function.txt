@@ -1,4 +1,4 @@
-{
+FUNCTION = {
   "name": "convert_resume",
   "description": "Converts a resume text into json format",
   "parameters": {
@@ -16,7 +16,6 @@
               "summary": { "type": "string", "default": "", "description": "Summary of work at company" }
             },
             "required": ["name", "position", "startDate", "endDate", "summary"],
-            "additionalProperties": false
           }
         },
         "education": {
@@ -31,7 +30,6 @@
               "endDate": { "type": "string", "default": "", "description": "End date of study" }
             },
             "required": ["institution", "area", "studyType", "startDate", "endDate"],
-            "additionalProperties": false
           }
         },
         "certificates": {
@@ -44,7 +42,6 @@
               "issuer": { "type": "string", "default": "", "description": "Issuer of certificate" }
             },
             "required": ["name", "date", "issuer"],
-            "additionalProperties": false
           }
         },
         "skills": {
@@ -57,7 +54,6 @@
               "keywords": { "type": "array", "items": { "type": "string" }, "default": [], "description": "Keywords related to skill" }
             },
             "required": ["name", "level", "keywords"],
-            "additionalProperties": false
           }
         },
         "languages": {
@@ -69,7 +65,6 @@
               "level": { "type": "string", "default": "", "description": "Level of language" }
             },
             "required": ["language", "level"],
-            "additionalProperties": false
           }
         },
         "projects": {
@@ -83,7 +78,6 @@
               "summary": { "type": "string", "default": "", "description": "Summary of project" }
             },
             "required": ["name", "startDate", "endDate", "summary"],
-            "additionalProperties": false
           }
         },
         "interests": {
@@ -95,12 +89,9 @@
               "keywords": { "type": "array", "items": { "type": "string" }, "default": [] , "description": "Keywords related to interest"}
             },
             "required": ["name", "keywords"],
-            "additionalProperties": false
           }
         }
       },
       "required": ["work", "education", "certificates", "skills", "languages", "projects", "interests"],
-      "additionalProperties": false
   },
 }
-
