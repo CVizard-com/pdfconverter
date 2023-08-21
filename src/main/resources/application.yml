@@ -4,7 +4,7 @@ settings:
   kafka:
     topics:
       cleaned-text: cleaned_text
-  model: "gpt-3.5-turbo-16K"
+  model: "gpt-3.5-turbo"
 server:
   port: 8083
 spring:
