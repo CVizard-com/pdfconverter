@@ -9,7 +9,7 @@ server:
   port: 8083
 spring:
   kafka:
-    bootstrap-servers: "http://localhost.com:29092"
+    bootstrap-servers: "http://localhost:29092"
   cloud:
     function:
       definition: myConsumer
