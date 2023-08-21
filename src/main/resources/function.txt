@@ -1,0 +1,97 @@
+FUNCTION = {
+  "name": "convert_resume",
+  "description": "Converts a resume text into json format",
+  "parameters": {
+    "type": "object",
+    "properties": {
+        "work": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string", "default": "", "description": "Company name" },
+              "position": { "type": "string", "default": "" , "description": "Position held at company" },
+              "startDate": { "type": "string", "default": "", "description": "Start date of work at company" },
+              "endDate": { "type": "string", "default": "", "description": "End date of work at company" },
+              "summary": { "type": "string", "default": "", "description": "Summary of work at company" }
+            },
+            "required": ["name", "position", "startDate", "endDate", "summary"],
+          }
+        },
+        "education": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "institution": { "type": "string", "default": "", "description": "Name of institution" },
+              "area": { "type": "string", "default": "", "description": "Area of study" },
+              "studyType": { "type": "string", "default": "", "description": "Type of study" },
+              "startDate": { "type": "string", "default": "", "description": "Start date of study" },
+              "endDate": { "type": "string", "default": "", "description": "End date of study" }
+            },
+            "required": ["institution", "area", "studyType", "startDate", "endDate"],
+          }
+        },
+        "certificates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string", "default": "", "description": "Name of certificate" },
+              "date": { "type": "string", "default": "", "description": "Certificate issue date" },
+              "issuer": { "type": "string", "default": "", "description": "Issuer of certificate" }
+            },
+            "required": ["name", "date", "issuer"],
+          }
+        },
+        "skills": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string", "default": "", "description": "Name of skill" },
+              "level": { "type": "string", "default": "", "description": "Level of skill" },
+              "keywords": { "type": "array", "items": { "type": "string" }, "default": [], "description": "Keywords related to skill" }
+            },
+            "required": ["name", "level", "keywords"],
+          }
+        },
+        "languages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "language": { "type": "string", "default": "", "description": "Name of language" },
+              "level": { "type": "string", "default": "", "description": "Level of language" }
+            },
+            "required": ["language", "level"],
+          }
+        },
+        "projects": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string", "default": "", "description": "Name of project" },
+              "startDate": { "type": "string", "default": "", "description": "Start date of project" },
+              "endDate": { "type": "string", "default": "", "description": "End date of project" },
+              "summary": { "type": "string", "default": "", "description": "Summary of project" }
+            },
+            "required": ["name", "startDate", "endDate", "summary"],
+          }
+        },
+        "interests": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string", "default": "", "description": "Name of interest" },
+              "keywords": { "type": "array", "items": { "type": "string" }, "default": [] , "description": "Keywords related to interest"}
+            },
+            "required": ["name", "keywords"],
+          }
+        }
+      },
+      "required": ["work", "education", "certificates", "skills", "languages", "projects", "interests"],
+  },
+}
