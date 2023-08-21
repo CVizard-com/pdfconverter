@@ -11,7 +11,8 @@ import java.util.Optional;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChatGPTMessage {
+public class ChatGPTMessageFunction {
     private String role;
     private String content;
+    private FunctionCall function_call;
 }
