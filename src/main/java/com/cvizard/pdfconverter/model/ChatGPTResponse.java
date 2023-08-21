@@ -22,10 +22,9 @@ public class ChatGPTResponse {
     @Data
     public static class Choice {
         private int index;
-        private ChatGPTMessageFunction message;
+        private ChatGPTMessage message;
         private String finish_reason;
     }
-
     @Data
     public static class Usage{
         private String completion_tokens;

@@ -6,10 +6,11 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AppConfig {
-//    @Bean
-//    public String promptFromResource(String path) {
-//        return ResourceReader.readFileToString("classpath:" + path);
-//    }
+    @Bean
+    public String promptFromResource() {
+        return ResourceReader.readFileToString("classpath:prompt.txt");
+    }
+
     @Bean
     public ObjectMapper objectMapper() {
         return new ObjectMapper();
