@@ -46,16 +46,13 @@ public class ResumeService {
     public void resumeConverter(String resumeText, String key) throws JsonProcessingException {
         resumeRepository.save(Resume.builder().id(key).status(PROCESSING).build());
 
-        Resume resume = getResponse(resumeText);
+        Resume resume = openAIAdapter.getFunctionData(
+                messageFactory.resumeChatMessages(resumeText),
+                Functions.RESUME);
 
         resume.setId(key);
         resume.setStatus(READY);
         resumeRepository.save(resume);
         System.out.println("saved " + key);
-    }
-    public Resume getResponse(String resumeText) {
-        return openAIAdapter.getFunctionData(
-                messageFactory.resumeChatMessages(resumeText),
-                Functions.RESUME);
     }
 }
