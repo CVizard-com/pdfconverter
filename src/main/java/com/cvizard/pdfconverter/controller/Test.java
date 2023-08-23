@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class Test {
     private final ChatMessageFactory chatMessageFactory;
     private final OpenAIAdapter openAIAdapter;
+
     @GetMapping
     public Resume getResponse(){
         return openAIAdapter.getFunctionData(
