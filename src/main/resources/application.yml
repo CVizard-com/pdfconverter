@@ -6,7 +6,7 @@ settings:
       cleaned-text: cleaned_text
   model: "gpt-3.5-turbo"
 server:
-  port: 8083
+  port:
 spring:
   kafka:
     bootstrap-servers: "http://localhost:29092"
