@@ -1,6 +1,6 @@
 package com.cvizard.pdfconverter.openai;
 
-import com.cvizard.pdfconverter.model.Functions;
+//import com.cvizard.pdfconverter.openai.Functions;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.theokanning.openai.completion.chat.ChatCompletionChunk;
 import com.theokanning.openai.completion.chat.ChatCompletionRequest;

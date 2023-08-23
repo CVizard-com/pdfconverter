@@ -1,4 +1,4 @@
-package com.cvizard.pdfconverter.model;
+package com.cvizard.pdfconverter.openai;
 
 import com.cvizard.pdfconverter.model.Resume;
 import lombok.Value;
