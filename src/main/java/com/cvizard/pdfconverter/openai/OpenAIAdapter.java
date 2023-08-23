@@ -30,6 +30,17 @@ public class OpenAIAdapter {
     private final ObjectMapper objectMapper;
     public static final Duration OPEN_AI_TIMEOUT = Duration.ofMinutes(2L);
 
+    public String getGptResponse(List<ChatMessage> chatMessages) {
+        final var openAiService = new OpenAiService(token, Duration.ofMinutes(2L));
+        ChatCompletionRequest chatCompletionRequest = ChatCompletionRequest
+                .builder()
+                .model("gpt-4")
+                .messages(chatMessages)
+                .build();
+        log.info("This is your prompt {}", chatMessages);
+        return openAiService.createChatCompletion(chatCompletionRequest).getChoices().get(0).getMessage().getContent();
+    }
+
     public Flowable<ChatCompletionChunk> getStreamResponse(List<ChatMessage> chatMessages) {
         final var openAiService = getOpenAiService();
         final var chatCompletionRequest = ChatCompletionRequest
@@ -86,7 +97,27 @@ public class OpenAIAdapter {
         }
     }
 
+    @Transactional
+    public Flowable<ChatCompletionChunk> getGptResponse(UUID processId) {
+        final var openAiService = new OpenAiService(token, Duration.ofMinutes(2L));
+        ChatCompletionRequest chatCompletionRequest = ChatCompletionRequest
+                .builder()
+                .model("gpt-4")
+                .messages(List.of(
+                        new ChatMessage(ChatMessageRole.SYSTEM.value(), "You are an interviewer. Please generate 2 interview questions"),
+                        new ChatMessage(ChatMessageRole.USER.value(), "I'm Java Developer.")
+                ))
+                .n(1)
+                .build();
+
+        return openAiService.streamChatCompletion(chatCompletionRequest);
+
+    }
+
     public static class OpenAiException extends RuntimeException {
+        public OpenAiException() {
+        }
+
         public OpenAiException(Throwable cause) {
             super(cause);
         }
