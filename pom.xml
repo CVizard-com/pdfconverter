@@ -104,6 +104,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>pdfconverter</finalName>
     </build>
 
 </project>
