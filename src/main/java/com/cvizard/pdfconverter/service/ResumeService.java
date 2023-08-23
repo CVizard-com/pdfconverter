@@ -1,6 +1,5 @@
 package com.cvizard.pdfconverter.service;
 
-import com.cvizard.pdfconverter.config.AppConfig;
 import com.cvizard.pdfconverter.model.Functions;
 import com.cvizard.pdfconverter.model.Resume;
 import com.cvizard.pdfconverter.openai.ChatMessageFactory;
