@@ -1,15 +1,12 @@
 package com.cvizard.pdfconverter.service;
 
-import com.cvizard.pdfconverter.model.Functions;
+import com.cvizard.pdfconverter.openai.Functions;
 import com.cvizard.pdfconverter.model.Resume;
 import com.cvizard.pdfconverter.openai.ChatMessageFactory;
 import com.cvizard.pdfconverter.openai.OpenAIAdapter;
 import com.cvizard.pdfconverter.repository.ResumeRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.Message;
