@@ -21,6 +21,7 @@ import static com.cvizard.pdfconverter.model.ResumeStatus.READY;
 @Service
 @RequiredArgsConstructor
 public class ResumeService {
+
     private final ResumeRepository resumeRepository;
     private final OpenAIAdapter openAIAdapter;
     private final ChatMessageFactory messageFactory;
@@ -52,4 +53,5 @@ public class ResumeService {
         resumeRepository.save(resume);
         System.out.println("saved " + key);
     }
+    
 }

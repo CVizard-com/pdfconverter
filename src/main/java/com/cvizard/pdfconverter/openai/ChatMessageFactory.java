@@ -8,6 +8,7 @@ import java.util.List;
 
 @Service
 public class ChatMessageFactory {
+    
     public List<ChatMessage> resumeChatMessages(String resumeText){
 
         return List.of(

@@ -16,6 +16,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 public class Resume {
+
     @MongoId
     private String id;
     private ResumeStatus status;
@@ -86,6 +87,4 @@ public class Resume {
         private List<String> keywords;
     }
 
-
 }
-
