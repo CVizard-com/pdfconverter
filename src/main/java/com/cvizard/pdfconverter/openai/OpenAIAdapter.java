@@ -45,7 +45,7 @@ public class OpenAIAdapter {
         final var openAiService = getOpenAiService();
         final var chatCompletionRequest = ChatCompletionRequest
                 .builder()
-                .model("gpt-3.5-16K")
+                .model("gpt-3.5-turbo-16k")
                 .messages(chatMessages)
                 .temperature(0.0)
                 .build();
@@ -77,7 +77,7 @@ public class OpenAIAdapter {
 
             final var chatCompletionRequest = ChatCompletionRequest
                     .builder()
-                    .model("gpt-4")
+                    .model("gpt-3.5-turbo-16k")
                     .messages(chatMessages)
                     .functions(functionExecutor.getFunctions())
                     .functionCall(ChatCompletionRequest.ChatCompletionRequestFunctionCall.of(function.getName()))
