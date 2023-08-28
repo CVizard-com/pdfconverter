@@ -1,5 +1,7 @@
 package com.cvizard.pdfconverter.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,7 +20,9 @@ import java.util.List;
 public class Resume {
 
     @MongoId
+    @JsonIgnore
     private String id;
+    @JsonIgnore
     private ResumeStatus status;
     private List<Work> work;
     private List<Education> education;
