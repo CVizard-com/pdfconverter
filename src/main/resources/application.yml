@@ -9,9 +9,6 @@ settings:
 server:
   port:
 spring:
-  main:
-    lazy-initialization: true
-
   kafka:
     bootstrap-servers: "http://localhost:29092"
   cloud:
