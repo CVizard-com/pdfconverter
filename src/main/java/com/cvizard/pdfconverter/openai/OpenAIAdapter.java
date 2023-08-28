@@ -1,5 +1,6 @@
 package com.cvizard.pdfconverter.openai;
 
+import com.cvizard.pdfconverter.config.AppConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.theokanning.openai.completion.chat.ChatCompletionRequest;
 import com.theokanning.openai.completion.chat.ChatFunction;
@@ -22,14 +23,11 @@ public class OpenAIAdapter {
     @Value("${settings.gpt-api-key}")
     private String token;
     private final ObjectMapper objectMapper;
-    public static final Duration OPEN_AI_TIMEOUT = Duration.ofMinutes(2L);
-
-    public OpenAiService getOpenAiService() {
-        return new OpenAiService(token, OPEN_AI_TIMEOUT);
-    }
+    private final AppConfig config;
+   
 
     public <T> T getFunctionData(List<ChatMessage> chatMessages, Functions.Function<T> function) {
-        final var openAiService = getOpenAiService();
+        final var openAiService = config.getOpenAiService(token);
         try {
             final var chatFunction = ChatFunction.builder()
                     .name(function.getName())
