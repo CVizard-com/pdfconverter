@@ -7,6 +7,7 @@ import com.cvizard.pdfconverter.openai.OpenAIAdapter;
 import com.cvizard.pdfconverter.repository.ResumeRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.Message;
@@ -20,6 +21,7 @@ import static com.cvizard.pdfconverter.model.ResumeStatus.READY;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ResumeService {
 
     private final ResumeRepository resumeRepository;
@@ -32,8 +34,8 @@ public class ResumeService {
             String payload = message.getPayload();
             byte[] keyBytes = message.getHeaders().get(KafkaHeaders.RECEIVED_KEY, byte[].class);
             String key = new String(keyBytes, StandardCharsets.UTF_8);
-            System.out.println("payload = " + payload + " key = " + key);
             try {
+                log.info("Received message: {} with key: {}", payload, key);
                 resumeConverter(payload, key);
             } catch (JsonProcessingException e) {
                 throw new RuntimeException(e);
@@ -51,7 +53,7 @@ public class ResumeService {
         resume.setId(key);
         resume.setStatus(READY);
         resumeRepository.save(resume);
-        System.out.println("saved " + key);
+        log.info("Resume converted: {}", resume);
     }
     
 }
