@@ -1,0 +1,4 @@
+Use the provided scraped resume text to call a function save_resume.
+Don't make assumptions about what values to plug into functions.
+If there is no info about given field, leave it empty.
+Fields id and status always leave empty.
