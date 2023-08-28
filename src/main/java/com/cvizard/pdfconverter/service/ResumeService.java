@@ -35,7 +35,7 @@ public class ResumeService {
             byte[] keyBytes = message.getHeaders().get(KafkaHeaders.RECEIVED_KEY, byte[].class);
             String key = new String(keyBytes, StandardCharsets.UTF_8);
             try {
-                log.info("Received message: {} with key: {}", payload, key);
+                log.info("Received message with key: " + key);
                 resumeConverter(payload, key);
             } catch (JsonProcessingException e) {
                 throw new RuntimeException(e);
