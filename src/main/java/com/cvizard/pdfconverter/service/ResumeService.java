@@ -53,7 +53,7 @@ public class ResumeService {
         resume.setId(key);
         resume.setStatus(READY);
         resumeRepository.save(resume);
-        log.info("Resume converted: {}", resume);
+        log.info("Resume converted: {}", resume.getId());
     }
     
 }
