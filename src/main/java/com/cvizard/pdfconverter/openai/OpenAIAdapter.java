@@ -40,7 +40,7 @@ public class OpenAIAdapter {
 
             final var chatCompletionRequest = ChatCompletionRequest
                     .builder()
-                    .model("gpt-3.5-turbo-16k")
+                    .model("gpt-4")
                     .messages(chatMessages)
                     .functions(functionExecutor.getFunctions())
                     .functionCall(ChatCompletionRequest.ChatCompletionRequestFunctionCall.of(function.getName()))
